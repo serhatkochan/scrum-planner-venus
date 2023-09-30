@@ -41,3 +41,9 @@ jobs:
           nohup java -jar scrum-planner-venus-0.0.1-SNAPSHOT.jar &
           EOF
           rm -f private_key.pem
+
+      - name: Add EC2 to SSH known hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
+
