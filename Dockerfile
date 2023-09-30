@@ -1,3 +1,3 @@
-FROM openjdk:17-jre-slim
+FROM azul/zulu-openjdk:17-latest
 COPY ./scrum-planner-venus-0.0.1-SNAPSHOT.jar app.jar
 ENTRYPOINT ["java","-jar","/app.jar"]
