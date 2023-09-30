@@ -11,6 +11,6 @@ public class Test {
 
     @GetMapping
     public String test() {
-        return "test calisti!!!";
+        return "test calisti!!! deneme2";
     }
 }
