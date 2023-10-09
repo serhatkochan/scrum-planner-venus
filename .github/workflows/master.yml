@@ -28,6 +28,8 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
       - name: Download app artifact
         uses: actions/download-artifact@v2
         with:
@@ -37,7 +39,9 @@ jobs:
         run: |
           mkdir -p ~/.ssh
           ssh-keyscan ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
-      - name: Copy .jar and Dockerfile to EC2
+      - name: List current directory for debugging
+        run: ls -al
+      - name: Copy files to EC2
         env:
           PRIVATE_KEY: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
           HOST: ${{ secrets.EC2_HOST }}
@@ -54,5 +58,3 @@ jobs:
           docker build -t scrum-planner-venus .
           docker run -d -p 8080:8080 scrum-planner-venus
           EOF
-  
-  
