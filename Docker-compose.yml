@@ -11,4 +11,4 @@ services:
     environment:
       POSTGRES_DB: test-db
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: +123456789qw
+      POSTGRES_PASSWORD: "+123456789qw"

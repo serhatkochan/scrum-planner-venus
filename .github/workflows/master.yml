@@ -51,10 +51,10 @@ jobs:
           chmod 600 private_key.pem
           scp -i private_key.pem -r ./build/libs/* $USER@$HOST:/home/ec2-user/myapp/
           scp -i private_key.pem Dockerfile $USER@$HOST:/home/ec2-user/myapp/
+          scp -i private_key.pem docker-compose.yml $USER@$HOST:/home/ec2-user/myapp/
       - name: Build and Run Docker on EC2
         run: |
           ssh -i private_key.pem $USER@$HOST << EOF
           cd /home/ec2-user/myapp
-          docker build -t scrum-planner-venus .
-          docker run -d -p 8080:8080 scrum-planner-venus
+          docker-compose up -d
           EOF
